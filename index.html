@@ -19,6 +19,7 @@
             color: #000;
         }
 
+
     </style>
 </head>
 <body>
@@ -40,6 +41,9 @@
 
     <script>
         let app = document.querySelector("#app")
+
+
+        document.addEventListener('contextmenu', event => event.preventDefault())
 
         async function DowloadMedia(url) {
             let response = await fetch(`app.php?url=${url}`)
