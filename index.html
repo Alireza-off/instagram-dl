@@ -1,0 +1,67 @@
+<html lang="fa-IR" dir="rtl">
+<head>
+    <title>Dowloader InStagram | Free!</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        @import url('https://cdn.fontcdn.ir/Font/Persian/Sahel/Sahel.css');
+        body {
+            font-family: 'Sahel';
+            background-image: url('https://file.site77.ir/irannews/images/bg/18.png');
+        }
+        .fact {
+            opacity: 0.5;
+        }
+        p {
+            opacity: 1;
+            color: #000;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="w-50 mx-auto my-3">
+            <h1 class="text-center">دانلودر اینستاگرام</h1>
+            <hr>
+            <form class="form-group">
+                <input name="link" type="text" class="form-control" placeholder="لینک را وارد کنید..">
+                <button class="btn btn-success my-3">گرفتن پست  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-arrow-down-fill" viewBox="0 0 16 16">
+  <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 6.854-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708z"/>
+</svg></button>
+            </form>
+            <div id="app">
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let app = document.querySelector("#app")
+
+        async function DowloadMedia(url) {
+            let response = await fetch(`app.php?url=${url}`)
+            let json = await response.json();
+            app.innerHTML = `
+            <div class="card" style="width: 18rem;">
+              <img src="${json.data.url}" class="card-img-top" alt="روی دانلود برنید">
+              <div class="card-body">
+                <p class="card-text">دانلود با موفقیت انجام شد</p>
+                <a href="${json.data.url}" class="btn btn-success">دانلود</a>
+              </div>
+            </div>
+            `
+        }
+
+        let form = document.querySelector("form")
+        form.addEventListener("submit", e => {
+            e.preventDefault()
+            DowloadMedia(e.target.link.value)
+        })
+
+
+    </script>
+</body>
+</html>
